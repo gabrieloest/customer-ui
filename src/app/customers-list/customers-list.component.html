@@ -1,0 +1,37 @@
+<div class="row text-center" style="padding: 20px;">
+  <div class="col-sm-12">
+    <h3>Customers</h3>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Active</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers | async">
+        <td>{{customer.name}}</td>
+        <td>{{customer.age}}</td>
+        <td>{{customer.active}}</td>
+        <td>
+          <span class="btn is-small btn-primary" *ngIf='customer.active' (click)='updateActive(false, customer)'>Inactive</span>
+          <span class="btn is-small btn-primary" *ngIf='!customer.active' (click)='updateActive(true, customer)'>Active</span>
+        </td>
+        <td>
+          <span class="btn is-small btn-danger" (click)='deleteCustomer(customer)'>Delete</span>
+        </td>
+      </tr>
+      <!--<customer-details [customer]='customer'></customer-details>-->
+    </tbody>
+  </table>
+</div>
+<div>
+  <button type="button" class="btn btn-danger" (click)='deleteCustomers()'>Delete All</button>
+</div>
